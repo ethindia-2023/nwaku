@@ -15,7 +15,8 @@ class TransactionModel {
     transactionIndex,
     logs,
     logsBloom,
-    chainId
+    chainId,
+    addtionalOptions = null
   ) {
     this.model = mongoose.model("transactions", txScheme);
     this.AppID = AppID;
@@ -31,9 +32,10 @@ class TransactionModel {
     this.logs = logs;
     this.logsBloom = logsBloom;
     this.chainId = chainId;
+    this.addtionalOptions = addtionalOptions;
   }
 
-  static async init(txhash, rpc, AppID) {
+  static async init(txhash, rpc, AppID, addtionalOptions = null) {
     const response1 = await axios.post(
       rpc,
       `{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["${txhash}"],"id":1}`,
@@ -74,7 +76,8 @@ class TransactionModel {
       response1.data.result.transactionIndex,
       response2.data.result.logs,
       response2.data.result.logsBloom,
-      response3.data.result
+      response3.data.result,
+      addtionalOptions
     );
   }
 
@@ -94,6 +97,7 @@ class TransactionModel {
         logs: this.logs,
         logsBloom: this.logsBloom,
         chainId: this.chainId,
+        addtionalOptions: this.addtionalOptions,
       });
       return result;
     } catch (error) {

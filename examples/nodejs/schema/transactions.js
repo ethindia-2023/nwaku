@@ -17,6 +17,7 @@ class TrackTransacionClass {
       logs: { type: Array, required: true },
       logsBloom: { type: String, required: true },
       chainId: { type: String, required: true },
+      addtionalOptions: { type: Object, default: null },
       timestamp: { type: String, default: Date.now },
     });
   }

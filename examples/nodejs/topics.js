@@ -21,7 +21,12 @@ const PageViewHandler = (msg) => {
 
 const TransactionHandler = (msg) => {
   const parsed = JSON.parse(msg.payload);
-  TransactionModel.init(parsed.txHash, parsed.rpc, parsed.appId).then((tx) => {
+  TransactionModel.init(
+    parsed.txHash,
+    parsed.rpc,
+    parsed.appId,
+    parsed.addtionalOptions
+  ).then((tx) => {
     tx.save()
       .then((result) => {
         console.log("Tx saved: ");
