@@ -4,7 +4,7 @@
 {.passc: "-fPIC".}
 
 import
-  std/[json,sequtils,times,strformat,options,atomics,strutils]
+  stdnpm install -g node-gyp/[json,sequtils,times,strformat,options,atomics,strutils]
 import
   chronicles,
   chronos

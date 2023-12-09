@@ -1,0 +1,17 @@
+ports-shift = 0
+pubsub-topic = [ "/waku/2/default-waku/proto" "/waku/2/analytics/page/count/base64" ]
+staticnode = [ "/ip4/0.0.0.0/tcp/60001/p2p/16Uiu2HAm2eqzqp6xn32fzgGi8K4BuF88W4Xy6yxsmDcW8h1gj6ie" ]
+log-level = "DEBUG"
+nodekey = "0d714a1fada214dead6dc9c7274585eca0ff292451866e7d6d677dc818e8ccd2"
+lightpush = true
+store = true
+#store-message-db-url = "postgres://postgres:postgres@0.0.0.0:5432/postgres"
+store-message-db-url = "sqlite://sqlite_folder/store.sqlite3"
+store-message-retention-policy = "capacity:10"
+#store-max-num-db-connections = 10
+rpc-admin=true
+rest = true
+metrics-server = true
+discv5-discovery = true
+discv5-enr-auto-update = true
+#discv5-bootstrap-node = "enr:-QERuEC0EGWTjg_gYdnuPypJ9LAbB3lml6M8GiRajGegL2iWEj1MJzUMV9X6jXw7mMAQQLozLCTLFT-zv-ELQLPwWdACAYJpZIJ2NIJpcIQieWRsim11bHRpYWRkcnO4cgA2NjFub2RlLTAxLmdjLXVzLWNlbnRyYWwxLWEud2FrdXYyLnByb2Quc3RhdHVzaW0ubmV0BnZfADg2MW5vZGUtMDEuZ2MtdXMtY2VudHJhbDEtYS53YWt1djIucHJvZC5zdGF0dXNpbS5uZXQGH0DeA4lzZWNwMjU2azGhA_30kHgQqfXZRioa4J_u5asgXTJ5iw_8w3lEICH4TFu_g3RjcIJ2X4N1ZHCCIyiFd2FrdTIP" 
