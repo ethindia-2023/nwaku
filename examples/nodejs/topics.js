@@ -1,6 +1,6 @@
 const { PageViewMessage, TransactionMessage } = require("./protobuf");
 const ActiveVisitorsModel = require("./models/active-visitors");
-const TransactionModel = require("./models/transaction");
+const { TransactionModelClass } = require("./models/transaction");
 
 const PageViewHandler = (msg) => {
   const parsed = JSON.parse(msg.payload);
@@ -21,20 +21,17 @@ const PageViewHandler = (msg) => {
 
 const TransactionHandler = (msg) => {
   const parsed = JSON.parse(msg.payload);
-  TransactionModel.init(
-    parsed.txHash,
-    parsed.rpc,
-    parsed.appId,
-    parsed.addtionalOptions
-  ).then((tx) => {
-    tx.save()
-      .then((result) => {
-        console.log("Tx saved: ");
-      })
-      .catch((err) => {
-        console.error("Error saving PageViewMessage: " + err);
-      });
-  });
+  TransactionModelClass.init(parsed.txHash, parsed.rpc, parsed.appId).then(
+    (tx) => {
+      tx.save()
+        .then((result) => {
+          console.log("Tx saved: ");
+        })
+        .catch((err) => {
+          console.error("Error saving PageViewMessage: " + err);
+        });
+    }
+  );
 };
 
 const TOPICS = [

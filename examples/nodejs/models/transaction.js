@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const txScheme = require("../schema/transactions");
 const axios = require("axios");
-class TransactionModel {
+class TransactionModelClass {
   constructor(
     AppID,
     blockNumber,
@@ -16,7 +16,6 @@ class TransactionModel {
     logs,
     logsBloom,
     chainId,
-    addtionalOptions = null
   ) {
     this.model = mongoose.model("transactions", txScheme);
     this.AppID = AppID;
@@ -32,7 +31,6 @@ class TransactionModel {
     this.logs = logs;
     this.logsBloom = logsBloom;
     this.chainId = chainId;
-    this.addtionalOptions = addtionalOptions;
   }
 
   static async init(txhash, rpc, AppID, addtionalOptions = null) {
@@ -63,21 +61,20 @@ class TransactionModel {
         },
       }
     );
-    return new TransactionModel(
+    return new TransactionModelClass(
       AppID,
       response1.data.result.blockNumber,
       response1.data.result.from,
-      response1.data.result.gas,
-      response1.data.result.gasPrice,
+      parseInt(response1.data.result.gas),
+      parseInt(response1.data.result.gasPrice),
       response1.data.result.hash,
       response1.data.result.input,
       response1.data.result.to,
-      response1.data.result.value,
+      parseInt(response1.data.result.value),
       response1.data.result.transactionIndex,
       response2.data.result.logs,
       response2.data.result.logsBloom,
       response3.data.result,
-      addtionalOptions
     );
   }
 
@@ -123,5 +120,5 @@ class TransactionModel {
     }
   }
 }
-
-module.exports = TransactionModel;
+const TransactionModel = mongoose.model("transactions", txScheme);
+module.exports = {TransactionModelClass, TransactionModel};
