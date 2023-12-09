@@ -1,5 +1,5 @@
 ports-shift = 0
-pubsub-topic = [ "/waku/2/default-waku/proto" "/waku/2/analytics/page/count/base64" ]
+pubsub-topic = [ "/waku/2/default-waku/proto" "/waku/2/analytics/page/count/base64","/waku/2/analytics/tx/index/base64" ]
 staticnode = [ "/ip4/0.0.0.0/tcp/60001/p2p/16Uiu2HAm2eqzqp6xn32fzgGi8K4BuF88W4Xy6yxsmDcW8h1gj6ie" ]
 log-level = "DEBUG"
 nodekey = "0d714a1fada214dead6dc9c7274585eca0ff292451866e7d6d677dc818e8ccd2"

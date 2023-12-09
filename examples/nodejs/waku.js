@@ -3,6 +3,7 @@ var app = express();
 var wakuMod = require("bindings")("waku");
 const { TOPICS } = require("./topics");
 const { handler } = require("./handler");
+const Database = require("./utils/db");
 
 var cfg = `{
     "host": "0.0.0.0",
@@ -45,8 +46,10 @@ app.post("/publish", function (req, res) {
   res.end(JSON.stringify("OK publish"));
 });
 
-var server = app.listen(8081, function () {
+var server = app.listen(8081, async function () {
   var host = server.address().address;
   var port = server.address().port;
+  const db = new Database()
+  await db.connect();
   console.log("Example waku listening at http://%s:%s", host, port);
 });
